@@ -1,4 +1,4 @@
-![](images/_page_0_Picture_0.jpeg)
+![](_page_0_Picture_0.jpeg)
 
 # **YAVUZLAR KATARATEAM SİTESİ PENTEST RAPORU**
 
@@ -171,7 +171,7 @@ Bu zafiyetin iki kanıtı vardır:
 
 Standart bir kullanıcı (örn: test, user\_id=770) olarak sisteme giriş yapılır.
 
-![](images/_page_7_Figure_2.jpeg)
+![](_page_7_Figure_2.jpeg)
 
 Tarayıcıda F12 (Geliştirici Araçları) açılarak Depolama (Storage/Application) sekmesine gidilir.
 
@@ -181,11 +181,11 @@ user\_id değeri, başka bir geçerli kullanıcı ID'si olarak değiştirilir.Ve
 
 Sayfa, user\_id=2 olan kullanıcının paneli (inbox vs.) olarak yüklenir. Hesap başarıyla devralınmıştır.
 
-![](images/_page_7_Figure_7.jpeg)
+![](_page_7_Figure_7.jpeg)
 
 *Ek olarak:* Değer 0 olarak değiştirilip sayfa yenilendiğinde, ekran görüntüsündeki Fatal error ... mysqli\_sql\_exception hatası alınır.
 
-![](images/_page_8_Figure_0.jpeg)
+![](_page_8_Figure_0.jpeg)
 
 **Güvenli Oturum Yönetimi:** user\_id çerezini kullanmak tamamen bırakılmalıdır.
 
@@ -262,7 +262,7 @@ Sayfanın alt kısmında Ping Result bölümünün çıktısı incelenir.
 
 SONUÇ: Ekrana, ping komutunun hatasıyla birlikte, id komutunun çıktısı olan uid=33(www-data) gid=33(www-data) groups=33(www-data) metninin basıldığı görülür. Bu, komutun sunucuda başarıyla çalıştığını kanıtlar.
 
-![](images/_page_10_Picture_13.jpeg)
+![](_page_10_Picture_13.jpeg)
 
 **Komut Enjeksiyonunu Engelleme:** Kullanıcıdan alınan girdi (url) işletim sistemi komutlarına asla doğrudan birleştirilmemelidir. Girdi, PHP'nin escapeshellarg() fonksiyonundan geçirilmelidir. Bu fonksiyon, girdiyi tek tırnak içine alır ve |, &, ; gibi tüm shell metakarakterlerinin komut olarak değil, ping komutuna bir argüman olarak algılanmasını sağlar.
 
@@ -330,7 +330,7 @@ deneme15@gmail.com'
 
 Sunucu, HTTP 200 OK yanıtı döner ancak sayfanın gövdesinde (body) Fatal error: ... mysqli\_sql\_exception ... near '''' at line 1 ... /var/www/html/user/login.php on line 16 hatası açıkça görülür. Bu hata, enjeksiyonun başarılı olduğunun kanıtıdır.
 
-![](images/_page_13_Figure_0.jpeg)
+![](_page_13_Figure_0.jpeg)
 
 **Prepared Statements Kullanımı:** Uygulamadaki mysqli->query() gibi doğrudan sorgu çalıştıran tüm fonksiyonlar Parametreli Sorgular (Prepared Statements) ile değiştirilmelidir. Bu yöntem, kullanıcı girdisini (') bir SQL komutu olarak değil, sorgulanacak bir metin parçası olarak ele alır ve SQL Enjeksiyonu'nu %100 engeller.
 
@@ -383,13 +383,13 @@ Uygulamanın login.php betiği ise deneme11@gmail.com e-postasıyla giriş yapı
 
 **Kurban Hesap:** deneme11@gmail.com e-postası ve deneme şifresiyle yeni bir "Kurban" hesap oluşturulur.
 
-![](images/_page_15_Figure_4.jpeg)
+![](_page_15_Figure_4.jpeg)
 
 **Saldırı:** "Saldırgan" (test66) olarak oturum açılır ve profile.php sayfasına gidilir.
 
 Email address alanı, "Kurban" hesabın e-postası olan deneme11@gmail.com olarak değiştirilir ve "Submit" edilir. Sistem bu değişikliği kabul eder.
 
-![](images/_page_16_Figure_0.jpeg)
+![](_page_16_Figure_0.jpeg)
 
 Tüm oturumlardan çıkış yapılır .
 
@@ -402,7 +402,7 @@ Kurbanın kendi doğru bilgileriyle giriş yapılmaya çalışılır:
 
 Ekran görüntülerinde kanıtlandığı gibi, sistem Invalid Password (Geçersiz Şifre) hatası döndürür. Kurban (deneme11) kendi hesabından kalıcı olarak kilitlenmiştir.
 
-![](images/_page_16_Figure_7.jpeg)
+![](_page_16_Figure_7.jpeg)
 
 # **Çözüm Önerileri**
 
@@ -456,17 +456,17 @@ Sunucu, sadece isteği yapanın *herhangi bir* geçerli kullanıcı olup olmadı
 
 **Kurban Hesap:** deneme11 kullanıcısıyla giriş yapılır ve<https://www.youtube.com/> adında bir site eklenir. Sunucu bu siteye id=3638 atar.
 
-![](images/_page_18_Figure_3.jpeg)
+![](_page_18_Figure_3.jpeg)
 
 **Saldırgan Hesap:** test22 kullanıcısıyla (tamamen farklı bir hesap) giriş yapılır.
 
 Saldırgan, add-site.php'de delete butonuna basarak burpsuite de post isteğini yakalar ve id kısmına 3638 yazınca test22 kullanıcısının listesinden 3638 id li url silinir.
 
-![](images/_page_18_Figure_6.jpeg)
+![](_page_18_Figure_6.jpeg)
 
 Saldırgan, test22 kullanıcısı olmasına rağmen, deneme11 kullanıcısına ait olan id=3638 'li urli başarıyla siler.
 
-![](images/_page_19_Figure_0.jpeg)
+![](_page_19_Figure_0.jpeg)
 
 **Sahiplik Kontrolü**: Sunucu, delete veya ping işlemini yapmadan hemen önce, o an oturum açmış kullanıcının (\$\_SESSION['user\_id']) silinmesi/ping'lenmesi istenen sitenin (\$\_GET['id']) sahibi olup olmadığını veri tabanından kontrol etmelidir.
 
@@ -519,7 +519,7 @@ Uygulamanın login.php sayfası, bir giriş denemesi başarısız olduğunda iki
 
 • Ekranda Kullanıcı E-postası mevcut değil. hatası belirir.
 
-![](images/_page_20_Picture_12.jpeg)
+![](_page_20_Picture_12.jpeg)
 
 #### **Deneme 2 (Mevcut Olan E-posta):**
 
